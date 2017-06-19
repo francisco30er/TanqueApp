@@ -5,9 +5,9 @@ GPIO.setmode(GPIO.BCM)
 from ubidots import ApiClient
 import math
 
-api = ApiClient(token="972FUfeyLTXqbUKXlaLNgJ9jEHeuKl")
 
-#variable = api.get_variable("59274e40762542294766e523")
+api = ApiClient(token="972FUfeyLTXqbUKXlaLNgJ9jEHeuKl")
+#variable metros cubicos
 variable1 = api.get_variable("593ec67876254251716133ab")
 
 variable = api.get_variable("593ec67876254251716133ab")
@@ -29,8 +29,6 @@ GPIO.output(TRIG, True)
 time.sleep(0.00001)
 GPIO.output(TRIG, False)
 
-
-
 while GPIO.input(ECHO)==0:
   pulse_start = time.time()
 
@@ -47,31 +45,20 @@ metros = 14.5 - distance
 
 print "Distance:",distance,"cm"
 
+#calcula la cantidad de metros cubicos que contiene el tanque
 metros = 14.89-distance
 
 print "Hay",metros,"m3"
 
 print "------------------------------------------------------"
-print "------------------------------------------------------"
-print "------------------------------------------------------"
 
 if ( metros < 3) : print "Tanque vacio!"
 
-
-#if ( metros >= 6  and metros <9 ) : print "Tanque a un cuarto!"
-
-
-#if ( metros >= 9) : print "Tanque a tres cuartos!"
-
 if ( metros >= 12) : print "Tanque lleno!"
 
+#limpia los pines GPIO
 GPIO.cleanup()
 
-# Write the value to your variable in Ubidots
-
-#response = variable.save_value({"value": distance})
-#print response
-#time.sleep(1)
 
 response = variable1.save_value({"value": metros})
 
