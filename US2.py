@@ -7,9 +7,8 @@ import math
 
 
 api = ApiClient(token="972FUfeyLTXqbUKXlaLNgJ9jEHeuKl")
-#variable metros cubicos
-variable1 = api.get_variable("593ec67876254251716133ab")
 
+#variable metros cubicos
 variable = api.get_variable("593ec67876254251716133ab")
 
 
@@ -58,9 +57,6 @@ if ( metros >= 12) : print "Tanque lleno!"
 
 #limpia los pines GPIO
 GPIO.cleanup()
-
-
-response = variable1.save_value({"value": metros})
 
 response = variable.save_value({"value": metros})
 
